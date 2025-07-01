@@ -144,14 +144,49 @@
         </svg>
       </a>
     </div>
-    <div class="right">
-      <button aria-label="Search" onclick="alert('Search clicked!')">
-        <svg viewBox="0 0 24 24">
-          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
-        </svg>
-      </button>
-      <a href="about.html">About</a>
-    </div>
+    <div class="right" style="gap: 10px;">
+
+  <button aria-label="Search" onclick="alert('Search clicked!')">
+    <svg viewBox="0 0 24 24">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
+    </svg>
+  </button>
+
+  <a href="about.html">About</a>
+
+  <select id="language-select" aria-label="Select language" title="Select language" style="
+    border: 1px solid #222;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    background: white;
+    color: #222;
+  ">
+    <option value="en">🇬🇧 English</option>
+    <option value="fr">🇫🇷 Français</option>
+    <option value="ru">🇷🇺 Русский</option>
+  </select>
+
+</div>
+
+<script>
+  const langSelect = document.getElementById('language-select');
+
+  // Restore saved language if any
+  const savedLang = localStorage.getItem('selectedLang');
+  if (savedLang) {
+    langSelect.value = savedLang;
+  }
+
+  langSelect.addEventListener('change', (e) => {
+    const selected = e.target.value;
+    localStorage.setItem('selectedLang', selected);
+    console.log('Selected language:', selected);
+    // TODO: add logic to swap language or redirect
+  });
+</script>
+
   </nav>
 
   <main>

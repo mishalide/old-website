@@ -2,19 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>misha's site!! </title>
+  <title>misha's site!!</title>
+  <link rel="icon" href="images/images.png" type="image/png" />
+  
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background-color: #cdb4db; 
+      color: #222; /* WHAT THE FUCK IS GRAPHIC DESIGN */
     }
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #222;
-      color: white;
+      background-color: #ffafcc; 
+      color: #222;
       padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .left, .right {
       display: flex;
@@ -22,19 +27,20 @@
       gap: 15px;
     }
     a, button {
-      color: white;
+      color: #222;
       background: none;
-      border: 1px solid white;
+      border: 2px solid #a2d2ff; 
       padding: 6px 12px;
-      border-radius: 4px;
+      border-radius: 6px;
       text-decoration: none;
       cursor: pointer;
       font-size: 14px;
-      transition: background-color 0.2s, color 0.2s;
+      transition: background-color 0.3s, color 0.3s;
     }
     a:hover, button:hover {
-      background-color: white;
+      background-color: #a2d2ff; 
       color: #222;
+      border-color: #ffc8dd; 
     }
     button {
       border: none;
@@ -42,12 +48,13 @@
       padding: 6px;
     }
     button svg {
-      fill: white;
+      fill: #222;
       width: 20px;
       height: 20px;
+      transition: fill 0.3s;
     }
     button:hover svg {
-      fill: #222;
+      fill: #bde0fe;
     }
   </style>
 </head>

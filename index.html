@@ -80,13 +80,22 @@
       max-width: 800px;
       margin: 0 auto;
     }
-    #latest-posts div {
+        #latest-posts div {
       border-bottom: 1px solid #ddd;
       padding-bottom: 15px;
       margin-bottom: 15px;
       display: flex;
+      justify-content: space-between; 
       align-items: flex-start;
       gap: 15px;
+    }
+    
+    #latest-posts img {
+      max-width: 120px;
+      max-height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;  
     }
     #latest-posts h3 {
       margin: 0 0 5px 0;
@@ -153,25 +162,34 @@
   </nav>
 
   <main>
-    <h1>hii! this is misha's website</h1>
-    <p>i'm a high school student and fan of biochemistry (along with other things)</p>
-    <p class="read-blog-link">
-      <a href="blog.html">read things I write here</a>
-    </p>
-    <div style="text-align: right; margin-top: 30px;">
-      <figure style="display: inline-block; margin: 0;">
-        <img src="images/protein.png" alt="Protein structure" style="max-width: 500px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
-        <figcaption style="font-size: 13px; color: #555; margin-top: 6px; max-width: 500px;">
-          (sorry, not at home so can't make any fancy PyMOL renders — use this one courtesy of Jumper, J. et al via Wikimedia Commons)
-        </figcaption>
-      </figure>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; margin-bottom: 40px;">
+    <div style="flex: 1; min-width: 250px;">
+      <h1>hii! this is misha's website</h1>
+      <p>
+        i'm a high school student and fan of biochemistry (along with other things)
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi vel consectetur euismod, nisl nunc consectetur nisi, euismod aliquam nisl nunc eu nisl.
+      </p>
+      <p class="read-blog-link">
+        <a href="blog.html">read things I write here</a>
+      </p>
     </div>
+    <figure style="flex-shrink: 0; max-width: 300px; text-align: center; margin: 0;">
+      <img src="images/protein.png" alt="Protein structure"
+           style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
+      <figcaption style="font-size: 13px; color: #555; margin-top: 6px;">
+        (sorry, not at home so can't make any fancy PyMOL renders — use this one courtesy of Jumper, J. et al via Wikimedia Commons)
+      </figcaption>
+    </figure>
+  </div>
 
-    <section id="latest-posts-section" style="margin-top: 50px;">
-      <h2>Latest Posts</h2>
-      <div id="latest-posts">Loading latest posts...</div>
-    </section>
-  </main>
+  <section id="latest-posts-section">
+    <h2>Latest Posts</h2>
+    <div id="latest-posts">Loading latest posts...</div>
+  </section>
+</main>
+
 
   <footer>
     © 2025 misha - hosted by GitHub Pages - powered by terrible html code

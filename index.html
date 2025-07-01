@@ -128,6 +128,22 @@
       color: #0077cc;
       cursor: pointer;
     }
+    /* Updated language dropdown background */
+    #language-select {
+      border: 1px solid #222;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: #d0e7ff; /* pastel blue */
+      color: #222;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    #language-select:hover {
+      background-color: #a2d2ff;
+    }
   </style>
 </head>
 <body>
@@ -154,15 +170,7 @@
 
       <a href="about.html">About</a>
 
-      <select id="language-select" aria-label="Select language" title="Select language" style="
-        border: 1px solid #222;
-        border-radius: 4px;
-        padding: 6px 12px;
-        font-size: 14px;
-        cursor: pointer;
-        background: #d0e7ff;
-        color: #222;
-      ">
+      <select id="language-select" aria-label="Select language" title="Select language">
         <option value="en">🇬🇧 English</option>
         <option value="fr">🇫🇷 Français</option>
         <option value="ru">🇷🇺 Русский</option>
@@ -179,18 +187,30 @@
         langSelect.value = savedLang;
       }
 
+      // Redirect based on saved language on page load (except if already on correct page)
+      function redirectIfNeeded(lang) {
+        const path = window.location.pathname.toLowerCase();
+        if (lang === 'fr' && !path.startsWith('/fr/')) {
+          window.location.href = '/fr/index.fr.html';
+        } else if (lang === 'ru' && !path.startsWith('/ru/')) {
+          window.location.href = '/ru/index.ru.html';
+        } else if (lang === 'en' && (path !== '/' && !path.endsWith('index.html'))) {
+          window.location.href = '/index.html';
+        }
+      }
+
+      redirectIfNeeded(savedLang);
+
       langSelect.addEventListener('change', (e) => {
         const selected = e.target.value;
         localStorage.setItem('selectedLang', selected);
-        console.log('Selected language:', selected);
 
-        // Redirect depending on language selection
         if (selected === 'fr') {
-           window.location.href = '/fr/index.fr.html';
+          window.location.href = '/fr/index.fr.html';
         } else if (selected === 'ru') {
-          window.location.href = '/ru/index.ru.html'; 
+          window.location.href = '/ru/index.ru.html';
         } else {
-            window.location.href = 'index.html';
+          window.location.href = '/index.html';
         }
       });
     </script>
@@ -270,18 +290,4 @@
             <div>
               <div style="flex: 1;">
                 <h3><a href="${post.url}">${post.title}</a></h3>
-                <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 6px;">${post.date} — Tags: ${post.tags.join(', ')}</p>
-                <p class="snippet">${snippet}</p>
-              </div>
-              ${post.img ? `<img src="${post.img}" alt="${post.imgAlt}">` : ''}
-            </div>
-          `;
-        }).join('');
-      } catch (e) {
-        document.getElementById('latest-posts').textContent = 'Failed to load posts.';
-      }
-    }
-    fetchBlogPosts();
-  </script>
-</body>
-</html>
+                <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 6px;">${post.date} — Tags: ${post.tags.

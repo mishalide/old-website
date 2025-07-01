@@ -27,13 +27,6 @@
       align-items: center;
       gap: 15px;
     }
-    select.language-switch {
-      padding: 4px 8px;
-      font-size: 14px;
-      border-radius: 4px;
-      border: 1px solid #999;
-      background-color: #fff;
-    }
     a.icon-link {
       display: inline-flex;
       align-items: center;
@@ -41,14 +34,16 @@
       width: 30px;
       height: 30px;
       text-decoration: none;
+      border: none;
     }
-    a.icon-link img {
+    a.icon-link svg {
       width: 24px;
       height: 24px;
-      transition: opacity 0.2s;
+      fill: #222;
+      transition: fill 0.2s;
     }
-    a.icon-link:hover img {
-      opacity: 0.7;
+    a.icon-link:hover svg {
+      fill: #555;
     }
     a, button {
       color: #222;
@@ -65,11 +60,63 @@
       background-color: #d0e7ff;
       border-color: #555;
     }
+    button {
+      border: none;
+      background: transparent;
+      padding: 6px;
+    }
+    button svg {
+      fill: #222;
+      width: 20px;
+      height: 20px;
+      transition: fill 0.3s;
+    }
+    button:hover svg {
+      fill: #555;
+    }
     main {
       padding: 20px;
       flex: 1;
       max-width: 800px;
       margin: 0 auto;
+    }
+        #latest-posts div {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between; 
+      align-items: flex-start;
+      gap: 15px;
+    }
+    
+    #latest-posts img {
+      max-width: 120px;
+      max-height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;  
+    }
+    #latest-posts h3 {
+      margin: 0 0 5px 0;
+      font-weight: normal;
+    }
+    #latest-posts h3 a {
+      font-weight: bold;
+      color: #0077cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    #latest-posts p.snippet {
+      flex: 1;
+      margin: 0;
+      color: #444;
+    }
+    #latest-posts img {
+      max-width: 120px;
+      max-height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
     }
     footer {
       background-color: #f0f0f0;
@@ -79,48 +126,140 @@
       padding: 10px;
       border-top: 1px solid #ddd;
     }
+    p.read-blog-link a {
+      border: none;
+      padding: 0;
+      background: none;
+      text-decoration: underline;
+      font: inherit;
+      color: #0077cc;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <nav class="topbar">
     <div class="left">
       <a class="icon-link" href="https://discordapp.com/users/1151318515693912137" target="_blank" rel="noopener noreferrer" title="Discord">
-        <img src="images/discord.svg" alt="Discord" />
+        <svg viewBox="0 0 24 24">
+          <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.07.07 0 00-.074.035 13.823 13.823 0 00-.651 1.343 18.71 18.71 0 00-5.605 0 13.776 13.776 0 00-.657-1.343.07.07 0 00-.074-.035 19.736 19.736 0 00-4.885 1.515.064.064 0 00-.03.027C.533 9.045-.32 13.58.099 18.057a.08.08 0 00.031.056c2.052 1.507 4.042 2.422 5.992 3.029a.077.077 0 00.084-.027c.462-.63.873-1.295 1.226-1.994a.076.076 0 00-.041-.104 11.048 11.048 0 01-1.607-.766.077.077 0 01-.007-.131c.108-.081.215-.163.318-.245a.075.075 0 01.079-.01c3.338 1.53 6.946 1.53 10.244 0a.075.075 0 01.08.009c.104.082.21.164.319.245a.077.077 0 01-.006.131 10.936 10.936 0 01-1.608.766.076.076 0 00-.04.105c.36.699.771 1.364 1.225 1.993a.076.076 0 00.084.028c1.96-.607 3.951-1.522 6.002-3.03a.077.077 0 00.031-.055c.5-5.177-.838-9.658-3.548-13.66a.061.061 0 00-.03-.028zM8.02 15.331c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.174 1.094 2.156 2.418 0 1.334-.955 2.419-2.156 2.419zm7.974 0c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.174 1.094 2.156 2.418 0 1.334-.946 2.419-2.156 2.419z"/>
+        </svg>
       </a>
-      <a class="icon-link" href="mailto:misha.a.golubev@gmail.com" title="Email">
-        <img src="images/gmail.svg" alt="Email" />
+      <a class="icon-link" href="mailto:misha.a.golubev@gmail.com" title="Website!">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 13.065L.083 4.6A1 1 0 011 3h22a1 1 0 01.917 1.6L12 13.065zm0 2.33L23 6.382V19a1 1 0 01-1 1H2a1 1 0 01-1-1V6.382L12 15.395z"/>
+        </svg>
       </a>
     </div>
     <div class="right">
-      <select class="language-switch" onchange="switchLang(this.value)">
-        <option value="en">🇬🇧 English</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="ru">🇷🇺 Русский</option>
-      </select>
+      <button aria-label="Search" onclick="alert('Search clicked!')">
+        <svg viewBox="0 0 24 24">
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
+        </svg>
+      </button>
       <a href="about.html">About</a>
     </div>
   </nav>
 
-  <main id="main-content"></main>
+ <main>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; margin-bottom: 40px;">
+    <div style="flex: 1; min-width: 250px;">
+      <h1>hii! this is misha's website</h1>
+      <p>
+        i'm a high school student and fan of biochemistry (along with other things)
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi vel consectetur euismod, nisl nunc consectetur nisi, euismod aliquam nisl nunc eu nisl.
+      </p>
+      <p class="read-blog-link">
+        <a href="blog.html">read things I write here</a>
+      </p>
+    </div>
+    <figure style="flex-shrink: 0; max-width: 300px; text-align: center; margin: 0;">
+      <img src="images/protein.png" alt="Protein structure"
+           style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
+      <figcaption style="font-size: 13px; color: #555; margin-top: 6px;">
+        (sorry, not at home so can't make any fancy PyMOL renders — use this one courtesy of Jumper, J. et al via Wikimedia Commons)
+      </figcaption>
+    </figure>
+  </div>
+
+  <section id="latest-posts-section">
+    <h2>Latest Posts</h2>
+    <div id="latest-posts">Loading latest posts...</div>
+  </section>
+</main>
+
+
+    <section id="latest-posts-section" style="margin-top: 50px;">
+      <h2>Latest Posts</h2>
+      <div id="latest-posts">Loading latest posts...</div>
+    </section>
+  </main>
 
   <footer>
     © 2025 misha - hosted by GitHub Pages - powered by terrible html code
   </footer>
 
   <script>
-    const translations = {
-      en: `...`,
-      fr: `...`,
-      ru: `...`
-    };
+    async function fetchBlogPosts() {
+      try {
+        const res = await fetch('blog.html');
+        if (!res.ok) throw new Error('Failed to fetch blog.html');
+        const text = await res.text();
 
-    function switchLang(lang) {
-      const main = document.getElementById('main-content');
-      main.innerHTML = translations[lang] || translations['en'];
-      if (typeof fetchBlogPosts === 'function') fetchBlogPosts();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const postDivs = [...doc.querySelectorAll('#posts .post')];
+
+        const posts = postDivs.map(div => {
+          const titleElem = div.querySelector('h2');
+          const tagsElem = div.querySelector('.tags');
+          const pElems = div.querySelectorAll('p');
+          const imgElem = div.querySelector('img');
+
+          const title = titleElem ? titleElem.textContent.trim() : 'No title';
+          const url = 'blog.html'; // Placeholder, as no individual post pages
+          const tags = tagsElem ? [...tagsElem.querySelectorAll('span')].map(s => s.textContent.trim()) : [];
+          const date = div.getAttribute('data-date') || 'Unknown date';
+
+          let snippet = '';
+          for (let p of pElems) {
+            if (p.textContent.trim() && !p.style.fontSize) { // exclude date p styled differently
+              snippet = p.textContent.trim();
+              break;
+            }
+          }
+
+          const img = imgElem ? imgElem.getAttribute('src') : null;
+          const imgAlt = imgElem ? imgElem.getAttribute('alt') : '';
+
+          return { title, url, tags, date, snippet, img, imgAlt };
+        });
+
+        posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+        const latestPosts = posts.slice(0, 3);
+
+        const container = document.getElementById('latest-posts');
+        container.innerHTML = latestPosts.map(post => {
+          let snippet = post.snippet.length > 150 ? post.snippet.slice(0, 147) + '...' : post.snippet;
+          return 
+            <div>
+              <div style="flex: 1;">
+                <h3><a href="${post.url}">${post.title}</a></h3>
+                <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 6px;">${post.date} — Tags: ${post.tags.join(', ')}</p>
+                <p class="snippet">${snippet}</p>
+              </div>
+              ${post.img ? <img src="${post.img}" alt="${post.imgAlt}"> : ''}
+            </div>
+          ;
+        }).join('');
+      } catch(e) {
+        document.getElementById('latest-posts').textContent = 'Failed to load posts.';
+      }
     }
-
-    document.addEventListener('DOMContentLoaded', () => switchLang('en'));
+    fetchBlogPosts();
   </script>
 </body>
 </html>

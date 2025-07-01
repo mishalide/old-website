@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>blogue · le site à misha</title>
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
   <style>
     body {
       margin: 0;
@@ -112,10 +112,10 @@
 <body>
   <nav class="topbar">
     <div class="left">
-      <a href="index.html">Accueil</a>
+      <a href="/index.html">Accueil</a>
     </div>
     <div class="right">
-      <a href="about.html">À propos</a>
+      <a href="/about.html">À propos</a>
     </div>
   </nav>
 
@@ -133,42 +133,42 @@
       <div class="post" data-tags="Politique,Économie" data-date="2025-07-01">
         <h2>les syndicats, c’est-tu bon (en visuel)?</h2>
         <div class="tags"><span>Politique</span><span>Économie</span></div>
-        <p>tout ça a commencé parce que du monde se pognaient encore sur internet à propos des syndicats — y’en a qui disent que ça fait baisser la productivité, d’autres disent que c’est ben nécessaire pour avoir une bonne job. moi j’me suis dit : on va aller voir les chiffres à place de tourner en rond dans une autre discussion stérile.</p>
-        <p>j’ai utilisé trois jeux de données, tous de 2019 pour garder ça propre :</p>
+        <p>tout ça a commencé parce que du monde se chicanait encore sur internet à propos des syndicats. y’en a qui disent que ça fait baisser la productivité, d’autres disent que c’est ben nécessaire pour avoir une bonne job. moi j’me suis dit, on va regarder les chiffres au lieu de tourner en rond dans une autre discussion stérile.</p>
+        <p>j’ai utilisé trois jeux de données, tous de 2019 pour garder ça cohérent :</p>
         <ul>
           <li>les taux de syndicalisation par pays (OCDE),</li>
           <li>la productivité du travail par heure (Penn World Table),</li>
           <li>pis le PIB national (Banque mondiale), juste pour situer les tailles économiques.</li>
         </ul>
-        <p>j’ai aussi rajouté l’intensité du capital (combien d’équipements les travailleurs ont).</p>
-        <p>le premier embed montre deux graphiques à bulles. à gauche, le taux syndical vs la productivité — pis y’a une belle courbe en U : les extrêmes (pas de syndicats ou full syndicats) performent moins, pis le milieu est meilleur. est-ce que c’est significatif? pas sûr. 15 pays, c’est pas énorme.</p>
-        <p>l’autre graphique c’est intensité capitalistique vs productivité — là, c’est clair net droit : plus de machines = plus de rendement.</p>
+        <p>j’ai aussi rajouté l’intensité du capital, c’est-à-dire combien d’équipement les travailleurs ont dans chaque pays.</p>
+        <p>le premier embed montre deux graphiques à bulles. à gauche, taux de syndicat contre productivité. y’a une courbe en U qui se dessine. les pays avec très peu ou beaucoup de syndicalisation performent moins bien, tandis que ceux au milieu s’en sortent mieux. est-ce que ça veut dire quelque chose? peut-être pas. y’a juste 15 pays.</p>
+        <p>le deuxième graphique montre l’intensité capitalistique contre la productivité. là c’est clair, plus tu donnes des machines à ton monde, plus la productivité grimpe.</p>
         <iframe src="/misc/2dscatterplotforecon.html" width="100%" height="500"></iframe>
 
-        <p>ensuite j’ai brassé un graphique 3D avec les trois variables — taux de syndicat, intensité capitalistique, pis productivité. c’est un peu plus dur à lire, mais tu peux le pivoter, zoomer, pis spotter les clusters.</p>
-        <p>ce qui ressort, c’est que chaque pays a sa propre manière d’arriver à une bonne productivité. certains misent tout sur le capital, d’autres ont un équilibre avec les syndicats. pis d’autres… ben ils flottent dans le milieu tranquille.</p>
+        <p>ensuite j’ai fait un graphique 3D avec les trois variables ensemble. c’est un peu plus difficile à lire au début, mais tu peux le faire tourner et zoomer dedans. ça aide à trouver des regroupements.</p>
+        <p>ce qui est intéressant, c’est que les pays n’ont pas tous la même stratégie. certains misent sur le capital, d’autres ont un équilibre entre syndicats et équipement. pis d’autres sont juste perdus au centre.</p>
 
         <iframe src="/misc/3dscatterplotforecon.html" width="100%" height="600"></iframe>
 
         <h3>comment j’ai fait ça</h3>
-        <p>j’ai utilisé R avec Plotly pour faire les graphiques, pis j’ai exporté ça en HTML autonome. le plus long, c’est vraiment de nettoyer les données pis matcher les pays entre les bases. je publierai peut-être un script plus propre plus tard. (ou pas, tsé...)</p>
+        <p>j’ai tout fait avec R et Plotly. ça permet de générer des graphiques interactifs et de les exporter en fichiers HTML. le plus long, c’est de faire le ménage dans les données pis faire matcher les pays entre les sources. j’vais peut-être poster un script plus propre plus tard, si quelqu’un est curieux.</p>
         <p style="font-size: 12px; color: #888;">Publié le 1 juillet 2025</p>
       </div>
 
       <div class="post" data-tags="Robotique" data-date="2025-07-01">
-        <h2>visualisation de l’attrition FRC au Texas !</h2>
+        <h2>visualisation de l’attrition FRC au Texas</h2>
         <div class="tags"><span>Robotique</span></div>
-        <p>un p’tit projet de visualisation en R pour la FRC!! un billet plus complet va arriver… éventuellement!</p>
-        <p>j’ai récupéré les données avec une version modifiée du script de @Ta0shan, qui scrape les taux d’attrition depuis The Blue Alliance. plus la couleur est foncée, plus le taux est mauvais. au début j’avais coloré ça par région urbaine mais c’était un bordel visuel, fait que c’est par comté maintenant (pis ceux sans données s’affichent pas).</p>
-        <img src="images/attrition rate data.png" alt="Carte principale avec taux d’attrition, cartes secondaires avec nombre d’équipes dans le temps." />
+        <p>un petit test de visualisation avec R pour la FRC. un billet plus long avec plus d’analyses va sortir un jour, peut-être.</p>
+        <p>les données viennent d’une version modifiée du script de @Ta0shan pour récupérer les taux d’attrition depuis The Blue Alliance. les couleurs foncées indiquent plus d’attrition, donc c’est pas bon. au début j’avais fait ça par région métropolitaine mais c’était trop chargé, alors j’ai utilisé les comtés. ceux sans données s’affichent pas pour que ça reste propre.</p>
+        <img src="/images/attrition rate data.png" alt="Carte avec taux d’attrition FRC" />
         <p style="font-size: 12px; color: #888;">Publié le 1 juillet 2025</p>
       </div>
 
       <div class="post" data-tags="Informatique" data-date="2025-07-01">
         <h2>test de patience (informatique)</h2>
         <div class="tags"><span>Informatique</span></div>
-        <p>si ça fonctionne pas, j’vais capoter pour vrai</p>
-        <img src="images/images.png" alt="image random que j’ai laissée là dans mon dossier" />
+        <p>si ça marche pas, j’vais virer fou</p>
+        <img src="/images/images.png" alt="image qui traînait dans le dossier" />
         <p style="font-size: 12px; color: #888;">Publié le 1 juillet 2025</p>
       </div>
     </div>

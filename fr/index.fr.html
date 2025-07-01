@@ -128,6 +128,20 @@
       color: #0077cc;
       cursor: pointer;
     }
+    /* Language select dropdown background */
+    #language-select {
+      background-color: #a2d2ff;
+      color: #222;
+      border: 1px solid #222;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #language-select option {
+      background-color: white;
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -152,42 +166,135 @@
         </svg>
       </button>
 
-      <a href="../about.html">À propos</a>
+      <a href="about.fr.html">À propos</a>
 
-      <select id="language-select" aria-label="Choisir la langue" title="Choisir la langue" style="
-        border: 1px solid #222;
-        border-radius: 4px;
-        padding: 6px 12px;
-        font-size: 14px;
-        cursor: pointer;
-        background: white;
-        color: #222;
-      ">
+      <select id="language-select" aria-label="Choisir la langue" title="Choisir la langue">
         <option value="en">🇬🇧 Anglais</option>
         <option value="fr" selected>🇫🇷 Français</option>
         <option value="ru">🇷🇺 Russe</option>
       </select>
 
     </div>
-
-    <script>
-      const langSelect = document.getElementById('language-select');
-
-      // Restaurer la langue sauvegardée si y'en a une
-      const savedLang = localStorage.getItem('selectedLang');
-      if (savedLang) {
-        langSelect.value = savedLang;
-      }
-
-      langSelect.addEventListener('change', (e) => {
-        const selected = e.target.value;
-        localStorage.setItem('selectedLang', selected);
-        console.log('Langue sélectionnée:', selected);
-        // TODO : ajouter la logique pour changer la langue ou rediriger
-      });
-    </script>
-
   </nav>
 
+  <script>
+    const langSelect = document.getElementById('language-select');
+
+    // Restore saved language if any, or default to 'fr'
+    let savedLang = localStorage.getItem('selectedLang') || 'fr';
+    langSelect.value = savedLang;
+
+    // Redirect if current page language doesn't match savedLang
+    // This page is French ('fr'), so redirect if savedLang is not 'fr'
+    if (savedLang !== 'fr') {
+      if (savedLang === 'en') {
+        window.location.href = '/index.html';
+      } else if (savedLang === 'ru') {
+        window.location.href = '/index.ru.html';
+      }
+    }
+
+    langSelect.addEventListener('change', (e) => {
+      const selected = e.target.value;
+      localStorage.setItem('selectedLang', selected);
+      console.log('Langue sélectionnée:', selected);
+
+      if (selected === 'en') {
+        window.location.href = '/index.html';
+      } else if (selected === 'fr') {
+        window.location.href = '/index.fr.html';
+      } else if (selected === 'ru') {
+        window.location.href = '/index.ru.html';
+      }
+    });
+  </script>
+
   <main>
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items:
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; margin-bottom: 40px;">
+      <div style="flex: 1; min-width: 250px;">
+        <h1>Bonjour ! C’est le site de Misha</h1>
+        <p>J’suis lycéenne et fan de biochimie (et d’autres trucs aussi)</p>
+        <p>Je suis dans l’équipe Pearadox 5414, tu peux souvent me trouver au coin impression 3D... à imprimer des trucs en 3D. En plus, j’suis passionnée de data science (pas vraiment, mais j’suis douée pour faire des trucs en R). Je participe aussi au programme d’été GL4HS de la NASA, hébergé virtuellement au Ames Research Center. L’année prochaine, je vais suivre Chimie AP, Physique AP, APUSH, APLAC, Français 3, Pré-calcul AP, et Art !</p>
+        <p class="read-blog-link">
+          <a href="blog.fr.html">Lis ce que j’écris ici</a>
+        </p>
+      </div>
+      <figure style="flex-shrink: 0; max-width: 300px; text-align: center; margin: 0;">
+        <img src="images/protein.png" alt="Structure de protéine" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
+        <figcaption style="font-size: 13px; color: #555; margin-top: 6px;">
+          (désolée, j’suis pas chez moi donc je peux pas faire de rendus PyMOL stylés — utilise celui-ci offert par Jumper, J. et al via Wikimedia Commons)
+        </figcaption>
+      </figure>
+    </div>
+
+    <section id="latest-posts-section" style="margin-top: 50px;">
+      <h2>Derniers articles</h2>
+      <div id="latest-posts">Chargement des articles...</div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 misha - hébergé par GitHub Pages - propulsé par un code HTML terrible
+  </footer>
+
+  <script>
+    async function fetchBlogPosts() {
+      try {
+        const res = await fetch('blog.fr.html');
+        if (!res.ok) throw new Error('Échec du chargement de blog.fr.html');
+        const text = await res.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const postDivs = [...doc.querySelectorAll('#posts .post')];
+
+        const posts = postDivs.map(div => {
+          const titleElem = div.querySelector('h2');
+          const tagsElem = div.querySelector('.tags');
+          const pElems = div.querySelectorAll('p');
+          const imgElem = div.querySelector('img');
+
+          const title = titleElem ? titleElem.textContent.trim() : 'Pas de titre';
+          const url = 'blog.fr.html';
+          const tags = tagsElem ? [...tagsElem.querySelectorAll('span')].map(s => s.textContent.trim()) : [];
+          const date = div.getAttribute('data-date') || 'Date inconnue';
+
+          let snippet = '';
+          for (let p of pElems) {
+            if (p.textContent.trim() && !p.style.fontSize) {
+              snippet = p.textContent.trim();
+              break;
+            }
+          }
+
+          const img = imgElem ? imgElem.getAttribute('src') : null;
+          const imgAlt = imgElem ? imgElem.getAttribute('alt') : '';
+
+          return { title, url, tags, date, snippet, img, imgAlt };
+        });
+
+        posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+        const latestPosts = posts.slice(0, 3);
+
+        const container = document.getElementById('latest-posts');
+        container.innerHTML = latestPosts.map(post => {
+          const snippet = post.snippet.length > 150 ? post.snippet.slice(0, 147) + '...' : post.snippet;
+          return `
+            <div>
+              <div style="flex: 1;">
+                <h3><a href="${post.url}">${post.title}</a></h3>
+                <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 6px;">${post.date} — Tags: ${post.tags.join(', ')}</p>
+                <p class="snippet">${snippet}</p>
+              </div>
+              ${post.img ? `<img src="${post.img}" alt="${post.imgAlt}">` : ''}
+            </div>
+          `;
+        }).join('');
+      } catch (e) {
+        document.getElementById('latest-posts').textContent = 'Échec du chargement des articles.';
+      }
+    }
+    fetchBlogPosts();
+  </script>
+</body>
+</html>

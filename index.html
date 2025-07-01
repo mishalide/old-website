@@ -128,21 +128,20 @@
       color: #0077cc;
       cursor: pointer;
     }
-    /* Updated language dropdown background */
+    /* Pastel blue background for the language select dropdown */
     #language-select {
       border: 1px solid #222;
       border-radius: 4px;
       padding: 6px 12px;
       font-size: 14px;
       cursor: pointer;
-      background-color: #d0e7ff; /* pastel blue */
+      background: #d0e7ff; /* pastel blue */
       color: #222;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
+      transition: background-color 0.2s;
     }
-    #language-select:hover {
-      background-color: #a2d2ff;
+    #language-select:hover, #language-select:focus {
+      background: #a2d2ff; /* slightly stronger pastel blue on hover/focus */
+      outline: none;
     }
   </style>
 </head>
@@ -161,7 +160,6 @@
       </a>
     </div>
     <div class="right" style="gap: 10px;">
-
       <button aria-label="Search" onclick="alert('Search clicked!')">
         <svg viewBox="0 0 24 24">
           <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
@@ -175,32 +173,33 @@
         <option value="fr">🇫🇷 Français</option>
         <option value="ru">🇷🇺 Русский</option>
       </select>
-
     </div>
 
     <script>
       const langSelect = document.getElementById('language-select');
 
-      // Restore saved language if any
-      const savedLang = localStorage.getItem('selectedLang');
-      if (savedLang) {
-        langSelect.value = savedLang;
-      }
+      // Get saved language or default to 'en'
+      let savedLang = localStorage.getItem('selectedLang') || 'en';
 
-      // Redirect based on saved language on page load (except if already on correct page)
+      // Set dropdown to saved or default language
+      langSelect.value = savedLang;
+
+      // Redirect if on wrong page for savedLang
       function redirectIfNeeded(lang) {
         const path = window.location.pathname.toLowerCase();
+
         if (lang === 'fr' && !path.startsWith('/fr/')) {
           window.location.href = '/fr/index.fr.html';
         } else if (lang === 'ru' && !path.startsWith('/ru/')) {
           window.location.href = '/ru/index.ru.html';
-        } else if (lang === 'en' && (path !== '/' && !path.endsWith('index.html'))) {
+        } else if (lang === 'en' && path !== '/' && !path.endsWith('index.html') && !path.includes('/fr/') && !path.includes('/ru/')) {
           window.location.href = '/index.html';
         }
       }
 
       redirectIfNeeded(savedLang);
 
+      // Listen for changes in dropdown and redirect accordingly
       langSelect.addEventListener('change', (e) => {
         const selected = e.target.value;
         localStorage.setItem('selectedLang', selected);
@@ -290,4 +289,18 @@
             <div>
               <div style="flex: 1;">
                 <h3><a href="${post.url}">${post.title}</a></h3>
-                <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 6px;">${post.date} — Tags: ${post.tags.
+                <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 6px;">${post.date} — Tags: ${post.tags.join(', ')}</p>
+                <p class="snippet">${snippet}</p>
+              </div>
+              ${post.img ? `<img src="${post.img}" alt="${post.imgAlt}">` : ''}
+            </div>
+          `;
+        }).join('');
+      } catch (e) {
+        document.getElementById('latest-posts').textContent = 'Failed to load posts.';
+      }
+    }
+    fetchBlogPosts();
+  </script>
+</body>
+</html>

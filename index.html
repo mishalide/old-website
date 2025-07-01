@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <title>misha's site!!</title>
-  <link rel="icon" href="images/images.png" type="image/png" />
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #cdb4db; 
-      color: #222; /* WHAT THE FUCK IS GRAPHIC DESIGN */
+      background-color: #ffffff; 
+      color: #222;
     }
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffafcc; 
+      background-color: #a2d2ff; 
       color: #222;
       padding: 10px 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     .left, .right {
       display: flex;
@@ -29,18 +29,17 @@
     a, button {
       color: #222;
       background: none;
-      border: 2px solid #a2d2ff; 
+      border: 1px solid #222;
       padding: 6px 12px;
-      border-radius: 6px;
+      border-radius: 4px;
       text-decoration: none;
       cursor: pointer;
       font-size: 14px;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
     }
     a:hover, button:hover {
-      background-color: #a2d2ff; 
-      color: #222;
-      border-color: #ffc8dd; 
+      background-color: #d0e7ff;
+      border-color: #555;
     }
     button {
       border: none;
@@ -54,7 +53,7 @@
       transition: fill 0.3s;
     }
     button:hover svg {
-      fill: #bde0fe;
+      fill: #555;
     }
   </style>
 </head>
@@ -64,9 +63,8 @@
       <a href="https://discordapp.com/users/1151318515693912137" target="_blank" rel="noopener noreferrer">Discord</a>
     </div>
     <div class="right">
-      <button aria-label="Search" onclick="alert('Search clicked!')">
-        <!-- Simple magnifying glass icon SVG -->
-        <svg viewBox="0 0 24 24" >
+      <button aria-label="Search" onclick="alert('the search function doesn't work yet, sorry!')">
+        <svg viewBox="0 0 24 24">
           <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
         </svg>
       </button>

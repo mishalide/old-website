@@ -128,19 +128,18 @@
       color: #0077cc;
       cursor: pointer;
     }
-    /* Pastel blue background for the language select dropdown */
     #language-select {
       border: 1px solid #222;
       border-radius: 4px;
       padding: 6px 12px;
       font-size: 14px;
       cursor: pointer;
-      background: #d0e7ff; /* pastel blue */
+      background: #d0e7ff;
       color: #222;
       transition: background-color 0.2s;
     }
     #language-select:hover, #language-select:focus {
-      background: #a2d2ff; /* slightly stronger pastel blue on hover/focus */
+      background: #a2d2ff;
       outline: none;
     }
   </style>
@@ -148,77 +147,27 @@
 <body>
   <nav class="topbar">
     <div class="left">
-      <a class="icon-link" href="https://discordapp.com/users/1151318515693912137" target="_blank" rel="noopener noreferrer" title="Discord">
-        <svg viewBox="0 0 24 24">
-          <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.07.07 0 00-.074.035 13.823 13.823 0 00-.651 1.343 18.71 18.71 0 00-5.605 0 13.776 13.776 0 00-.657-1.343.07.07 0 00-.074-.035 19.736 19.736 0 00-4.885 1.515.064.064 0 00-.03.027C.533 9.045-.32 13.58.099 18.057a.08.08 0 00.031.056c2.052 1.507 4.042 2.422 5.992 3.029a.077.077 0 00.084-.027c.462-.63.873-1.295 1.226-1.994a.076.076 0 00-.041-.104 11.048 11.048 0 01-1.607-.766.077.077 0 01-.007-.131c.108-.081.215-.163.318-.245a.075.075 0 01.079-.01c3.338 1.53 6.946 1.53 10.244 0a.075.075 0 01.08.009c.104.082.21.164.319.245a.077.077 0 01-.006.131 10.936 10.936 0 01-1.608.766.076.076 0 00-.04.105c.36.699.771 1.364 1.225 1.993a.076.076 0 00.084.028c1.96-.607 3.951-1.522 6.002-3.03a.077.077 0 00.031-.055c.5-5.177-.838-9.658-3.548-13.66a.061.061 0 00-.03-.028zM8.02 15.331c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.174 1.094 2.156 2.418 0 1.334-.955 2.419-2.156 2.419zm7.974 0c-1.183 0-2.156-1.085-2.156-2.419 0-1.333.955-2.418 2.156-2.418 1.21 0 2.174 1.094 2.156 2.418 0 1.334-.946 2.419-2.156 2.419z"/>
-        </svg>
+      <a class="icon-link" href="https://discordapp.com/users/1151318515693912137" target="_blank" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.317..."/></svg>
       </a>
       <a class="icon-link" href="mailto:misha.a.golubev@gmail.com" title="Email">
-        <svg viewBox="0 0 24 24">
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M20 4H4..."/></svg>
       </a>
-      <!-- LinkedIn icon link -->
-      <a class="icon-link" href="https://www.linkedin.com/in/misha-golubev-0a953a27a/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-        <svg viewBox="0 0 24 24">
-          <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.24 8.96h4.51v14.04H.24V8.96zM9.5 8.96h4.33v1.87h.06c.6-1.13 2.07-2.32 4.26-2.32 4.56 0 5.4 3 5.4 6.89v7.6H19.7v-6.73c0-1.6-.03-3.65-2.23-3.65-2.23 0-2.57 1.74-2.57 3.54v6.84H9.5V8.96z"/>
-        </svg>
+      <a class="icon-link" href="https://www.linkedin.com/in/misha-golubev-0a953a27a/" target="_blank" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5C..."/></svg>
       </a>
     </div>
-    <div class="right" style="gap: 10px;">
-      <button aria-label="Search" onclick="alert('Search clicked!')">
-        <svg viewBox="0 0 24 24">
-          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
-        </svg>
+    <div class="right">
+      <button aria-label="Search">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h..."/></svg>
       </button>
-
       <a href="about.html">About</a>
-
       <select id="language-select" aria-label="Select language" title="Select language">
         <option value="en">🇬🇧 English</option>
         <option value="fr">🇫🇷 Français</option>
         <option value="ru">🇷🇺 Русский</option>
       </select>
     </div>
-
-    <script>
-      const langSelect = document.getElementById('language-select');
-
-      // Get saved language or default to 'en'
-      let savedLang = localStorage.getItem('selectedLang') || 'en';
-
-      // Set dropdown to saved or default language
-      langSelect.value = savedLang;
-
-      // Redirect if on wrong page for savedLang
-      function redirectIfNeeded(lang) {
-        const path = window.location.pathname.toLowerCase();
-
-        if (lang === 'fr' && !path.startsWith('/fr/')) {
-          window.location.href = '/fr/index.fr.html';
-        } else if (lang === 'ru' && !path.startsWith('/ru/')) {
-          window.location.href = '/ru/index.ru.html';
-        } else if (lang === 'en' && path !== '/' && !path.endsWith('index.html') && !path.includes('/fr/') && !path.includes('/ru/')) {
-          window.location.href = '/index.html';
-        }
-      }
-
-      redirectIfNeeded(savedLang);
-
-      // Listen for changes in dropdown and redirect accordingly
-      langSelect.addEventListener('change', (e) => {
-        const selected = e.target.value;
-        localStorage.setItem('selectedLang', selected);
-
-        if (selected === 'fr') {
-          window.location.href = '/fr/index.fr.html';
-        } else if (selected === 'ru') {
-          window.location.href = '/ru/index.ru.html';
-        } else {
-          window.location.href = '/index.html';
-        }
-      });
-    </script>
   </nav>
 
   <main>
@@ -227,9 +176,7 @@
         <h1>hii! this is misha's website</h1>
         <p>i'm a high school student and fan of biochemistry (along with other things)</p>
         <p>I'm a student on Pearadox 5414, you can typically find me in the 3d printing corner... 3d printing things. In addition to that, I'm a data science aficionado (not really, but I'm good with making stuff in R). I'm also participating in NASA's GL4HS summer training program hosted virtually at the Ames Research Center. Next year, I'll be taking AP Chemistry, AP Physics, APUSH, APLAC, French 3, AP Precalc, and Art! </p>
-        <p class="read-blog-link">
-          <a href="blog.html">read things I write here</a>
-        </p>
+        <p class="read-blog-link"><a href="blog.html">read things I write here</a></p>
       </div>
       <figure style="flex-shrink: 0; max-width: 300px; text-align: center; margin: 0;">
         <img src="images/protein.png" alt="Protein structure" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
@@ -238,13 +185,11 @@
         </figcaption>
       </figure>
     </div>
-
     <section id="latest-posts-section" style="margin-top: 50px;">
       <h2>Latest Posts</h2>
       <div id="latest-posts">Loading latest posts...</div>
     </section>
   </main>
-
   <footer>
     © 2025 misha - hosted by GitHub Pages - powered by terrible html code
   </footer>
@@ -253,60 +198,78 @@
     async function fetchBlogPosts() {
       try {
         const res = await fetch('blog.html');
-        if (!res.ok) throw new Error('Failed to fetch blog.html');
         const text = await res.text();
-
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
         const postDivs = [...doc.querySelectorAll('#posts .post')];
-
         const posts = postDivs.map(div => {
-          const titleElem = div.querySelector('h2');
-          const tagsElem = div.querySelector('.tags');
-          const pElems = div.querySelectorAll('p');
-          const imgElem = div.querySelector('img');
+          const title = div.querySelector('h2')?.textContent.trim() || 'No title';
+          const snippet = div.querySelector('p')?.textContent.trim() || '';
+          const date = div.getAttribute('data-date') || 'Unknown';
+          const tags = [...(div.querySelectorAll('.tags span') || [])].map(s => s.textContent.trim());
+          const img = div.querySelector('img')?.src || null;
+          return { title, snippet, date, tags, img };
+        }).sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0,3);
 
-          const title = titleElem ? titleElem.textContent.trim() : 'No title';
-          const url = 'blog.html';
-          const tags = tagsElem ? [...tagsElem.querySelectorAll('span')].map(s => s.textContent.trim()) : [];
-          const date = div.getAttribute('data-date') || 'Unknown date';
-
-          let snippet = '';
-          for (let p of pElems) {
-            if (p.textContent.trim() && !p.style.fontSize) {
-              snippet = p.textContent.trim();
-              break;
-            }
-          }
-
-          const img = imgElem ? imgElem.getAttribute('src') : null;
-          const imgAlt = imgElem ? imgElem.getAttribute('alt') : '';
-
-          return { title, url, tags, date, snippet, img, imgAlt };
-        });
-
-        posts.sort((a,b) => new Date(b.date) - new Date(a.date));
-        const latestPosts = posts.slice(0, 3);
-
-        const container = document.getElementById('latest-posts');
-        container.innerHTML = latestPosts.map(post => {
-          const snippet = post.snippet.length > 150 ? post.snippet.slice(0, 147) + '...' : post.snippet;
-          return `
-            <div>
-              <div style="flex: 1;">
-                <h3><a href="${post.url}">${post.title}</a></h3>
-                <p style="font-size: 12px; color: #666; margin-top: 0; margin-bottom: 6px;">${post.date} — Tags: ${post.tags.join(', ')}</p>
-                <p class="snippet">${snippet}</p>
-              </div>
-              ${post.img ? `<img src="${post.img}" alt="${post.imgAlt}">` : ''}
+        document.getElementById('latest-posts').innerHTML = posts.map(post => `
+          <div>
+            <div style="flex: 1;">
+              <h3><a href="blog.html">${post.title}</a></h3>
+              <p style="font-size: 12px; color: #666; margin: 0 0 6px;">${post.date} — Tags: ${post.tags.join(', ')}</p>
+              <p class="snippet">${post.snippet.length > 150 ? post.snippet.slice(0,147) + '...' : post.snippet}</p>
             </div>
-          `;
-        }).join('');
+            ${post.img ? `<img src="${post.img}" alt="">` : ''}
+          </div>`).join('');
       } catch (e) {
         document.getElementById('latest-posts').textContent = 'Failed to load posts.';
       }
     }
     fetchBlogPosts();
+
+    document.querySelector('button[aria-label="Search"]').onclick = async function() {
+      const query = prompt("Enter search term:");
+      if (!query) return;
+      try {
+        const res = await fetch('/search-index.json');
+        const index = await res.json();
+        const q = query.toLowerCase();
+        const results = index.filter(p => p.title.toLowerCase().includes(q) || p.content.toLowerCase().includes(q));
+
+        let container = document.getElementById('search-results');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = 'search-results';
+          container.style.margin = '20px auto';
+          container.style.maxWidth = '800px';
+          container.style.background = '#f9f9f9';
+          container.style.padding = '20px';
+          container.style.border = '1px solid #ccc';
+          container.style.borderRadius = '8px';
+          document.body.insertBefore(container, document.querySelector('main'));
+        }
+
+        container.innerHTML = `<h2>Search results for "${query}":</h2>`;
+        if (results.length === 0) {
+          container.innerHTML += '<p>No results found.</p>';
+          return;
+        }
+
+        const ul = document.createElement('ul');
+        ul.style.listStyle = 'none';
+        ul.style.padding = '0';
+        results.forEach(p => {
+          const li = document.createElement('li');
+          li.style.marginBottom = '20px';
+          li.innerHTML = `<a href="${p.url}" style="font-weight:bold;color:#0077cc;text-decoration:none">${p.title}</a>
+                          <p style="color:#555;margin:6px 0">${p.content.length > 200 ? p.content.slice(0,197) + '...' : p.content}</p>`;
+          ul.appendChild(li);
+        });
+        container.appendChild(ul);
+        container.scrollIntoView({ behavior: 'smooth' });
+      } catch (err) {
+        alert("Search failed: " + err.message);
+      }
+    };
   </script>
 </body>
 </html>

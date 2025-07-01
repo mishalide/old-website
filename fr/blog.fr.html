@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>blogue · le site à misha</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #a2d2ff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .left, .right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    a {
+      color: #222;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 20px;
+      flex: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .post {
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+    }
+
+    .post h2 {
+      margin-bottom: 5px;
+    }
+
+    .tags {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .tags span {
+      background-color: #d0e7ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+
+    .post img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    iframe {
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    #tag-filter {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    #tag-filter button {
+      background-color: #eee;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #tag-filter button.active {
+      background-color: #a2d2ff;
+    }
+
+    footer {
+      background-color: #f0f0f0;
+      color: #555;
+      text-align: center;
+      font-size: 12px;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="left">
+      <a href="index.html">Accueil</a>
+    </div>
+    <div class="right">
+      <a href="about.html">À propos</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Blogue</h1>
+    <div id="tag-filter">
+      <button onclick="filterPosts('all')" class="active">Tous</button>
+      <button onclick="filterPosts('Économie')">Économie</button>
+      <button onclick="filterPosts('Robotique')">Robotique</button>
+      <button onclick="filterPosts('Politique')">Politique</button>
+      <button onclick="filterPosts('Informatique')">Informatique</button>
+    </div>
+
+    <div id="posts">
+      <div class="post" data-tags="Politique,Économie" data-date="2025-07-01">
+        <h2>les syndicats, c’est-tu bon (en visuel)?</h2>
+        <div class="tags"><span>Politique</span><span>Économie</span></div>
+        <p>tout ça a commencé parce que du monde se pognaient encore sur internet à propos des syndicats — y’en a qui disent que ça fait baisser la productivité, d’autres disent que c’est ben nécessaire pour avoir une bonne job. moi j’me suis dit : on va aller voir les chiffres à place de tourner en rond dans une autre discussion stérile.</p>
+        <p>j’ai utilisé trois jeux de données, tous de 2019 pour garder ça propre :</p>
+        <ul>
+          <li>les taux de syndicalisation par pays (OCDE),</li>
+          <li>la productivité du travail par heure (Penn World Table),</li>
+          <li>pis le PIB national (Banque mondiale), juste pour situer les tailles économiques.</li>
+        </ul>
+        <p>j’ai aussi rajouté l’intensité du capital (combien d’équipements les travailleurs ont).</p>
+        <p>le premier embed montre deux graphiques à bulles. à gauche, le taux syndical vs la productivité — pis y’a une belle courbe en U : les extrêmes (pas de syndicats ou full syndicats) performent moins, pis le milieu est meilleur. est-ce que c’est significatif? pas sûr. 15 pays, c’est pas énorme.</p>
+        <p>l’autre graphique c’est intensité capitalistique vs productivité — là, c’est clair net droit : plus de machines = plus de rendement.</p>
+        <iframe src="/misc/2dscatterplotforecon.html" width="100%" height="500"></iframe>
+
+        <p>ensuite j’ai brassé un graphique 3D avec les trois variables — taux de syndicat, intensité capitalistique, pis productivité. c’est un peu plus dur à lire, mais tu peux le pivoter, zoomer, pis spotter les clusters.</p>
+        <p>ce qui ressort, c’est que chaque pays a sa propre manière d’arriver à une bonne productivité. certains misent tout sur le capital, d’autres ont un équilibre avec les syndicats. pis d’autres… ben ils flottent dans le milieu tranquille.</p>
+
+        <iframe src="/misc/3dscatterplotforecon.html" width="100%" height="600"></iframe>
+
+        <h3>comment j’ai fait ça</h3>
+        <p>j’ai utilisé R avec Plotly pour faire les graphiques, pis j’ai exporté ça en HTML autonome. le plus long, c’est vraiment de nettoyer les données pis matcher les pays entre les bases. je publierai peut-être un script plus propre plus tard. (ou pas, tsé...)</p>
+        <p style="font-size: 12px; color: #888;">Publié le 1 juillet 2025</p>
+      </div>
+
+      <div class="post" data-tags="Robotique" data-date="2025-07-01">
+        <h2>visualisation de l’attrition FRC au Texas !</h2>
+        <div class="tags"><span>Robotique</span></div>
+        <p>un p’tit projet de visualisation en R pour la FRC!! un billet plus complet va arriver… éventuellement!</p>
+        <p>j’ai récupéré les données avec une version modifiée du script de @Ta0shan, qui scrape les taux d’attrition depuis The Blue Alliance. plus la couleur est foncée, plus le taux est mauvais. au début j’avais coloré ça par région urbaine mais c’était un bordel visuel, fait que c’est par comté maintenant (pis ceux sans données s’affichent pas).</p>
+        <img src="images/attrition rate data.png" alt="Carte principale avec taux d’attrition, cartes secondaires avec nombre d’équipes dans le temps." />
+        <p style="font-size: 12px; color: #888;">Publié le 1 juillet 2025</p>
+      </div>
+
+      <div class="post" data-tags="Informatique" data-date="2025-07-01">
+        <h2>test de patience (informatique)</h2>
+        <div class="tags"><span>Informatique</span></div>
+        <p>si ça fonctionne pas, j’vais capoter pour vrai</p>
+        <img src="images/images.png" alt="image random que j’ai laissée là dans mon dossier" />
+        <p style="font-size: 12px; color: #888;">Publié le 1 juillet 2025</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 misha · hébergé sur GitHub Pages · codé avec du HTML douteux
+  </footer>
+
+  <script>
+    function filterPosts(tag) {
+      const posts = document.querySelectorAll('.post');
+      const buttons = document.querySelectorAll('#tag-filter button');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`#tag-filter button[onclick*="${tag}"]`).classList.add('active');
+
+      posts.forEach(post => {
+        if (tag === 'all' || tag === 'Tous') {
+          post.style.display = 'block';
+        } else {
+          const tags = post.getAttribute('data-tags').split(',');
+          post.style.display = tags.includes(tag) ? 'block' : 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

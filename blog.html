@@ -74,6 +74,12 @@
       margin-top: 10px;
     }
 
+    iframe {
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+    }
+
     #tag-filter {
       margin-bottom: 20px;
       display: flex;
@@ -124,15 +130,41 @@
     </div>
 
     <div id="posts">
+      <div class="post" data-tags="Politics,Tech" data-date="2025-07-01">
+        <h2>are unions good (visually)?</h2>
+        <div class="tags"><span>Politics</span><span>Tech</span></div>
+        <p>this all started because people online were arguing about unions again — some saying they tank productivity, others claiming they’re the key to a better workforce. i figured i'd just pull some numbers and see what the data actually looks like, instead of getting into another circular debate.</p>
+        <p>i combined three main datasets, all from 2019 to keep things consistent:</p>
+        <ul>
+          <li>unionization rates by country (from the OECD),</li>
+          <li>labor productivity measured as output per hour worked (from the Penn World Table),</li>
+          <li>and national GDP (from the World Bank), just for context and sizing.</li>
+        </ul>
+        <p>i also added capital intensity, which is basically how much equipment or physical capital workers have access to in a given country.</p>
+        <p>the first html embed (below) has two bubble plots side-by-side. the first one shows union rate vs labor productivity, and there's a clear downward curve — countries with very low or very high union membership seem to have lower productivity, while the ones in the middle tend to do best. it’s a classic parabola shape, and i threw on a smooth fit line to help make that clearer. does this mean anything ? no its probably just noise, you tend to get that with a sample size of 15</p>
+        <p>the second plot compares capital intensity vs productivity, and that one is just a straight-up positive linear trend — more machines and infrastructure per worker tends to mean higher productivity, no surprise there.</p>
+        <p>each dot is a country, and its size and color are based on GDP — bigger economies are more visually prominent. also, you can hover over each point to see which country it is and the actual numbers, which is handy if you want to dig around.</p>
+        <iframe src="/misc/2dscatterplotforecon.html" width="100%" height="500"></iframe>
+
+        <p>then i decided to build a 3d scatterplot that combines all three variables: union rate (x), capital intensity (y), and labor productivity (z). it’s a bit harder to read at first glance, but you can rotate it and zoom in, which helps you spot different clusters or patterns.</p>
+        <p>what’s neat here is that you can see how different countries take different “paths” to high productivity — some rely more on capital investment, others have more balanced union coverage and capital intensity. and some just kinda hover in the middle of everything.</p>
+
+        <iframe src="/misc/3dscatterplotforecon.html" width="100%" height="600"></iframe>
+
+        <h3>quick note on how this was built</h3>
+        <p>i made all the plots in R using Plotly, which lets you build interactive charts and export them as self-contained html files. most of the complexity is just cleaning the datasets and lining up the country codes across all sources. i might make a cleaner version of the script later if people are interested ; though look forward to a very cool FRC related library for R coming out sometime in the next… decade ?</p>
+        <p style="font-size: 12px; color: #888;">Posted on 2025-07-01</p>
+      </div>
+
       <div class="post" data-tags="Robotics" data-date="2025-07-01">
         <h2>FIRST in Texas attrition visualization!</h2>
         <div class="tags"><span>Robotics</span></div>
         <p>a small snapshot of some data visualisation using R for FRC!! a (much) longer blogpost with more insights coming... sometime soon!</p>
-        <p>The data was obtained via a modified version @Ta0shan's script to get attrition data from The Blue Alliance. Darker colors indicate higher attrition (which is bad!). Originally it was colored by metro area but that got messy very quickly, so its colored by county now (if the county had no data I didn't display it's borders to make the map cleaner).  </p>
+        <p>The data was obtained via a modified version @Ta0shan's script to get attrition data from The Blue Alliance. Darker colors indicate higher attrition (which is bad!). Originally it was colored by metro area but that got messy very quickly, so its colored by county now (if the county had no data I didn't display its borders to make the map cleaner).</p>
         <img src="images/attrition rate data.png" alt="The large map shows attrition rate, the small maps show total number of teams from 3 different snapshots" />
         <p style="font-size: 12px; color: #888;">Posted on 2025-07-01</p>
       </div>
-    
+
       <div class="post" data-tags="Tech" data-date="2025-07-01">
         <h2>testing</h2>
         <div class="tags"><span>Tech</span></div>

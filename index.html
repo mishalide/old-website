@@ -1,21 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My First GitHub Page</title>
+  <meta charset="UTF-8" />
+  <title>misha's site!! </title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #f0f0f0;
-      padding: 40px;
+      margin: 0;
+      font-family: Arial, sans-serif;
     }
-    h1 {
-      color: #2c3e50;
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      color: white;
+      padding: 10px 20px;
+    }
+    .left, .right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    a, button {
+      color: white;
+      background: none;
+      border: 1px solid white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    a:hover, button:hover {
+      background-color: white;
+      color: #222;
+    }
+    button {
+      border: none;
+      background: transparent;
+      padding: 6px;
+    }
+    button svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+    button:hover svg {
+      fill: #222;
     }
   </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <p>This is my first GitHub Pages site.</p>
+  <nav class="topbar">
+    <div class="left">
+      <a href="https://discordapp.com/users/1151318515693912137" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+    <div class="right">
+      <button aria-label="Search" onclick="alert('Search clicked!')">
+        <!-- Simple magnifying glass icon SVG -->
+        <svg viewBox="0 0 24 24" >
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
+        </svg>
+      </button>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <main style="padding: 20px;">
+    <h1>coucou!</h1>
+    <p>placeholder text :p </p>
+  </main>
 </body>
 </html>

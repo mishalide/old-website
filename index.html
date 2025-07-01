@@ -78,6 +78,8 @@
     main {
       padding: 20px;
       flex: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
     footer {
       background-color: #f0f0f0;
@@ -86,6 +88,30 @@
       font-size: 12px;
       padding: 10px;
       border-top: 1px solid #ddd;
+    }
+    #latest-posts-container {
+      margin-top: 40px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+    #latest-posts h2 {
+      margin-bottom: 20px;
+    }
+    #latest-posts div {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+    #latest-posts h3 {
+      margin: 0 0 5px 0;
+    }
+    #latest-posts p {
+      margin: 5px 0;
+    }
+    #latest-posts img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 8px;
     }
   </style>
 </head>
@@ -116,33 +142,78 @@
     </div>
   </nav>
   
-<main>
-  <h1>hii! this is misha's website</h1>
+  <main>
+    <h1>hii! this is misha's website</h1>
 
-  <p>
-    i'm a high school student and fan of biochemistry (along with other things)
-  </p>
+    <p>
+      i'm a high school student and fan of biochemistry (along with other things)
+    </p>
 
-  <p>
-    <a href="blog.html" style="border: none; padding: 0; background: none; text-decoration: underline; font: inherit; color: #0077cc;">
-      read things I write here
-    </a>
-  </p>
+    <p>
+      <a href="blog.html" style="border: none; padding: 0; background: none; text-decoration: underline; font: inherit; color: #0077cc;">
+        read things I write here
+      </a>
+    </p>
 
-  <div style="text-align: right; margin-top: 30px;">
-    <figure style="display: inline-block; margin: 0;">
-      <img src="images/protein.png" alt="Protein structure" style="max-width: 500px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
-      <figcaption style="font-size: 13px; color: #555; margin-top: 6px; max-width: 500px;">
-        (sorry, not at home so can't make any fancy PyMOL renders — use this one courtesy of Jumper, J. et al via Wikimedia Commons)
-      </figcaption>
-    </figure>
-  </div>
-</main>
+    <div style="text-align: right; margin-top: 30px;">
+      <figure style="display: inline-block; margin: 0;">
+        <img src="images/protein.png" alt="Protein structure" style="max-width: 500px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ccc;" />
+        <figcaption style="font-size: 13px; color: #555; margin-top: 6px; max-width: 500px;">
+          (sorry, not at home so can't make any fancy PyMOL renders — use this one courtesy of Jumper, J. et al via Wikimedia Commons)
+        </figcaption>
+      </figure>
+    </div>
 
-
+    <div id="latest-posts-container">
+      <h2>Latest Posts</h2>
+      <div id="latest-posts">Loading latest posts...</div>
+    </div>
+  </main>
 
   <footer>
     © 2025 misha - hosted by GitHub Pages - powered by terrible html code
   </footer>
+
+  <script>
+    async function loadLatestPosts() {
+      try {
+        const response = await fetch('blog.html');
+        if (!response.ok) throw new Error('Failed to fetch blog.html');
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+        const posts = [...doc.querySelectorAll('.post')];
+        const postData = posts.map(post => {
+          const title = post.querySelector('h2')?.textContent.trim() || 'No title';
+          const tags = post.getAttribute('data-tags')?.split(',').map(t => t.trim()) || [];
+          const date = post.getAttribute('data-date') || '1970-01-01';
+          const snippet = post.querySelector('p')?.textContent.trim() || '';
+          const img = post.querySelector('img')?.getAttribute('src') || null;
+          const imgAlt = post.querySelector('img')?.getAttribute('alt') || '';
+          const slug = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+          const url = `blog.html#${slug}`;
+
+          return { title, tags, date, snippet, img, imgAlt, url };
+        });
+        postData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const latestPosts = postData.slice(0, 3);
+        const container = document.getElementById('latest-posts');
+        container.innerHTML = latestPosts.map(post => `
+          <div>
+            <h3><a href="${post.url}">${post.title}</a></h3>
+            <p style="font-size: 12px; color: #666;">${post.date} — Tags: ${post.tags.join(', ')}</p>
+            <p>${post.snippet}</p>
+            ${post.img ? `<img src="${post.img}" alt="${post.imgAlt}">` : ''}
+          </div>
+        `).join('');
+
+      } catch (err) {
+        document.getElementById('latest-posts').textContent = 'Could not load latest posts.';
+        console.error(err);
+      }
+    }
+
+    loadLatestPosts();
+  </script>
 </body>
 </html>
